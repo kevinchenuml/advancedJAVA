@@ -1,5 +1,6 @@
 package edu.KevinChen.advancedjava.assignment2;
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 /**
  * This class contains information about a stock.
@@ -8,6 +9,7 @@ import java.math.BigDecimal;
 public class StockQuote {
     private String stockSymbol;
     private double stockPrice;
+    private Calendar stockDate;
 
     /**
      *  Create a new  StockData instance
@@ -15,10 +17,11 @@ public class StockQuote {
      * @param stockSymbol the stock symbol e.g. APPL (for APPLE)
      */
 
-    public StockQuote(double stockPrice, String stockSymbol) {
+    public StockQuote(double stockPrice, String stockSymbol, Calendar stockDate) {
 
         this.stockPrice = stockPrice;
         this.stockSymbol = stockSymbol;
+        this.stockDate = stockDate;
     }
 
     /**
@@ -33,4 +36,9 @@ public class StockQuote {
      */
     public double getStockPrice() { return stockPrice;}
 
+    /**
+     *
+     * @return The Date of the stock.
+     */
+    public Calendar getStockDate() { return stockDate;}
 }
