@@ -1,6 +1,7 @@
 package edu.KevinChen.advancedjava.assignment2;
 
-import org.junit.Before;
+
+import org.apache.http.annotation.Immutable;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -10,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  *
  * @author Kevin Chen
  */
-
+@Immutable
 public class StockQuoteApplicationTest {
 
     @Test

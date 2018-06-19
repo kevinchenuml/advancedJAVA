@@ -1,11 +1,15 @@
 package edu.KevinChen.advancedjava.assignment2;
+import org.apache.http.annotation.Immutable;
+
+
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
 /**
  * This class contains information about a stock.
  */
-
+@Immutable
 public class StockQuote {
     private String stockSymbol;
     private double stockPrice;
@@ -16,9 +20,8 @@ public class StockQuote {
      * @param stockPrice the price of the stock for the provided date
      * @param stockSymbol the stock symbol e.g. APPL (for APPLE)
      */
-
+    @NotNull
     public StockQuote(double stockPrice, String stockSymbol, Calendar stockDate) {
-
         this.stockPrice = stockPrice;
         this.stockSymbol = stockSymbol;
         this.stockDate = stockDate;

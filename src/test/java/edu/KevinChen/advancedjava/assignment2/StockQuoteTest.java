@@ -1,9 +1,10 @@
 package edu.KevinChen.advancedjava.assignment2;
 
-import edu.KevinChen.advancedjava.assignment2.StockQuote;
+import org.apache.http.annotation.Immutable;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.validation.constraints.NotNull;
 import java.util.Calendar;
 
 import static org.junit.Assert.assertEquals;
@@ -13,7 +14,7 @@ import static org.junit.Assert.assertEquals;
  *
  * @author Kevin Chen
  */
-
+@Immutable
 public class StockQuoteTest {
 
     private double StockPrice;
@@ -30,7 +31,9 @@ public class StockQuoteTest {
     }
 
     @Test
+    @NotNull
     public void testStockQuoteConstruction() {
+
         StockQuote stockQuote = new StockQuote(StockPrice, StockSymbol, stockDate);
 
         assertEquals("The Price is Correct", stockQuote.getStockPrice(),  testPrice, 0.0002);
