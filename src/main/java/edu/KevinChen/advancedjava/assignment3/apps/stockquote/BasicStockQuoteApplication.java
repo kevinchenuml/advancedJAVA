@@ -4,7 +4,7 @@ import edu.KevinChen.advancedjava.assignment3.model.StockQuery;
 import edu.KevinChen.advancedjava.assignment3.model.StockQuote;
 import edu.KevinChen.advancedjava.assignment3.services.StockService;
 import edu.KevinChen.advancedjava.assignment3.services.StockServiceException;
-import edu.KevinChen.advancedjava.assignment3.services.StockServiceFactory;
+import edu.KevinChen.advancedjava.assignment3.services.ServiceFactory;
 
 import java.text.ParseException;
 import java.util.List;
@@ -125,7 +125,7 @@ public class BasicStockQuoteApplication {
         try {
 
             StockQuery stockQuery = new StockQuery(args[0], args[1], args[2]);
-            StockService stockService = StockServiceFactory.getInstance();
+            StockService stockService = ServiceFactory.getStockServiceInstance();
             BasicStockQuoteApplication basicStockQuoteApplication =
                     new BasicStockQuoteApplication(stockService);
             basicStockQuoteApplication.displayStockQuotes(stockQuery);
