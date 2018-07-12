@@ -19,6 +19,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Unit tests for the DatabaseActivitiesService
  */
+/** Comment out tests required to connect to local DB
 public class DatabaseActivitiesServiceTest {
 
     private StockService stockService;
@@ -78,5 +79,7 @@ public class DatabaseActivitiesServiceTest {
         assertTrue("Found the person we added", found);
     }
 
-}
 
+
+}
+**/
