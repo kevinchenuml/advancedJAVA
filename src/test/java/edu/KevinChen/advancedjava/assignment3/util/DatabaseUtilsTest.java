@@ -11,6 +11,7 @@ import static org.junit.Assert.assertTrue;
 /**
  *  Tests for the DatabaseUtils class
  */
+/**
 public class DatabaseUtilsTest {
 
     @Test
@@ -27,3 +28,4 @@ public class DatabaseUtilsTest {
         assertTrue("verify that we can execute a statement",execute);
     }
 }
+ **/
