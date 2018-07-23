@@ -1,21 +1,29 @@
 package edu.KevinChen.advancedjava.assignment7.services;
 
-/**
- * A factory that returns a <CODE>ActivitiesService</CODE> instance.
- */
+import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
+
+import java.io.IOException;
+
 public class StockServiceFactory {
 
-    /**
-     * Prevent instantiations
-     */
-    private StockServiceFactory() {}
 
     /**
+     * Get a stock from web API
      *
-     * @return get a <CODE>StockService</CODE> instance
+     * @return a stock
      */
-    public static StockService getInstance() {
-        return new DatabaseStockService();
+    public static Stock getStockQuoteFromApi(String Symbol) throws StockQuoteServiceException {
+
+        Stock stock = null;
+
+        try {
+            stock = YahooFinance.get(Symbol);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return stock;
     }
 
 }

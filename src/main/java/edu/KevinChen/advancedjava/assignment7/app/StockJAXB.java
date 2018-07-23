@@ -1,8 +1,10 @@
 package edu.KevinChen.advancedjava.assignment7.app;
 
+import edu.KevinChen.advancedjava.assignment7.services.StockQuoteServiceException;
 import edu.KevinChen.advancedjava.assignment7.xml.Stocks;
 import edu.KevinChen.advancedjava.assignment7.xml.Stock;
 import edu.KevinChen.advancedjava.assignment7.model.StockQuote;
+import edu.KevinChen.advancedjava.assignment7.services.StockServiceFactory;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -72,8 +74,9 @@ public class StockJAXB {
             "</stocks>";
 
 
-    public static void main(String[] args) throws JAXBException {
-
+    public static void main(String[] args) throws JAXBException, StockQuoteServiceException {
+        /**
+         ** Comment out this portion of code to demonstrate use of Yahoo Stock API **
         // here is how to go from XML to Java
         JAXBContext jaxbContext = JAXBContext.newInstance(Stocks.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
@@ -100,6 +103,11 @@ public class StockJAXB {
         } catch(Exception e) {}
 
         stockQuote.setTime(timestamp);
+        **/
+
+        StockServiceFactory stockServiceFactory = new StockServiceFactory();
+        stockServiceFactory.getStockQuoteFromApi("GOOG").print();
+
 
     }
 }

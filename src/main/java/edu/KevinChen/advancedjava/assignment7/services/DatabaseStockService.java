@@ -7,7 +7,11 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
 
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,7 +81,6 @@ public class DatabaseStockService implements StockService {
             }
         }
     }
-
 
 }
 

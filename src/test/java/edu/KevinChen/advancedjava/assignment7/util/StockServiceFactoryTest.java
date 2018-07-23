@@ -1,8 +1,10 @@
 package edu.KevinChen.advancedjava.assignment7.util;
 
+import edu.KevinChen.advancedjava.assignment7.services.StockQuoteServiceException;
 import edu.KevinChen.advancedjava.assignment7.services.StockService;
 import edu.KevinChen.advancedjava.assignment7.services.StockServiceFactory;
 import org.junit.Test;
+import yahoofinance.Stock;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -12,8 +14,8 @@ import static org.junit.Assert.assertNotNull;
 public class StockServiceFactoryTest {
 
     @Test
-    public void testFactory() {
-        StockService instance = StockServiceFactory.getInstance();
+    public void testFactory() throws StockQuoteServiceException {
+        Stock instance = StockServiceFactory.getStockQuoteFromApi("Test");
         assertNotNull("Make sure factory works", instance);
     }
 }
