@@ -15,7 +15,7 @@ public class StockServiceFactoryTest {
 
     @Test
     public void testFactory() throws StockQuoteServiceException {
-        Stock instance = StockServiceFactory.getStockQuoteFromApi("Test");
+        Stock instance = StockServiceFactory.getStockQuoteFromApi("GOOG");
         assertNotNull("Make sure factory works", instance);
     }
 }
