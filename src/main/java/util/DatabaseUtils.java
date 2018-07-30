@@ -1,6 +1,11 @@
 package util;
 
 import com.ibatis.common.jdbc.ScriptRunner;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+import service.DatabaseStockService;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -23,6 +28,46 @@ public class DatabaseUtils {
     //  Database credentials
     private static final String USER = "kevinchen";
     private static final String PASS = "Kc12345";
+    private static SessionFactory sessionFactory;
+    private static Configuration configuration;
+
+    /*
+     * @return SessionFactory for use with database transactions
+     */
+    public static SessionFactory getSessionFactory() {
+
+        // singleton pattern
+        synchronized (DatabaseStockService.class) {
+            if (sessionFactory == null) {
+
+                Configuration configuration = getConfiguration();
+
+                ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
+                        .applySettings(configuration.getProperties())
+                        .buildServiceRegistry();
+
+                sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
+            }
+        }
+        return sessionFactory;
+    }
+
+    /**
+     * Create a new or return an existing database configuration object.
+     *
+     * @return a Hibernate Configuration instance.
+     */
+    private static Configuration getConfiguration() {
+
+        synchronized (DatabaseUtils.class) {
+            if (configuration == null) {
+                configuration = new Configuration();
+                configuration.configure("hibernate.cfg.xml");
+            }
+        }
+        return configuration;
+    }
 
     public static Connection getConnection() throws util.DatabaseConnectionException {
         Connection connection = null;
@@ -62,4 +107,6 @@ public class DatabaseUtils {
 
 
     }
+
+
 }

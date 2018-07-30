@@ -65,7 +65,22 @@
           <artifactId>mockito-all</artifactId>
           <version>1.9.5</version>
       </dependency>
+      <dependency>
+          <groupId>com.yahoofinance-api</groupId>
+          <artifactId>YahooFinanceAPI</artifactId>
+          <version>3.13.0</version>
+      </dependency>
+      <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-core</artifactId>
+          <version>4.2.6.Final</version>
+      </dependency>
 
+      <dependency>
+          <groupId>org.hibernate.javax.persistence</groupId>
+          <artifactId>hibernate-jpa-2.0-api</artifactId>
+          <version>1.0.1.Final</version>
+      </dependency>
   </dependencies>
   <build>
     <finalName>ExampleWebApp</finalName>

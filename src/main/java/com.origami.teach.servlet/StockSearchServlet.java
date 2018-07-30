@@ -41,8 +41,6 @@ public class StockSearchServlet extends HttpServlet {
         out.println("</body>");
         out.println("</html>");
 
-        StockService stockService = StockServiceFactory.getInstance();
-
         // Retrieve the value of the query parameter "username" (from text field)
         String symbol = request.getParameter("symbol");
         // Get null if the parameter is missing from query string.
@@ -83,7 +81,7 @@ public class StockSearchServlet extends HttpServlet {
                 || (endDate = (endDate.trim())).length() == 0) {
             out.println("<p>End date: MISSING</p>");
         } else {
-            out.println("<p>/End date: " + startDate + "</p>");
+            out.println("<p>/End date: " + endDate + "</p>");
         }
 
         Calendar end = Calendar.getInstance();
@@ -96,20 +94,35 @@ public class StockSearchServlet extends HttpServlet {
 
 
         // Retrieve the value of the query parameter "username" (from text field)
-        String interval = request.getParameter("intervalenum");
+        String source = request.getParameter("source");
         // Get null if the parameter is missing from query string.
         // Get empty string or string of white spaces if user did not fill in
-        if (interval == null
-                || (interval = (interval.trim())).length() == 0) {
-            out.println("<p>Interval Enum: MISSING</p>");
+        if (source == null
+                || (source = (source.trim())).length() == 0) {
+            out.println("<p>source: MISSING</p>");
         } else {
-            out.println("<p>/Interval Enum: " + startDate + "</p>");
+            out.println("<p>/source: " + source + "</p>");
         }
 
-        try {
-            stockService.getQuote(symbol, start, end);
-        } catch (StockServiceException e) {
-            e.printStackTrace();
+        if (source == "yahoo") {
+
+            StockServiceFactory stockServiceFactory = new StockServiceFactory();
+            try {
+                stockServiceFactory.getStockQuoteFromApi("GOOG").print();
+            } catch (StockServiceException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+
+            StockService stockService = StockServiceFactory.getInstance();
+
+            try {
+                stockService.getQuote(symbol, start, end);
+            } catch (StockServiceException e) {
+                e.printStackTrace();
+            }
+
         }
 
     }

@@ -18,11 +18,11 @@
     Symbol : <input type="text" name="symbol"><br>
     Start Date : <input type="text" name="startdate"><br>
     End Date : <input type="text" name="enddate"><br>
-    Interval : <select name="intervalEnum">
-                  <option value="TwelveHours">Twelve Hours</option>
-                  <option value="Daily">Daily</option>
-                  <option value="Weekly">Weekly</option>
+    Data Source : <select name="source">
+                  <option value="yahoo">Yahoo API</option>
+                  <option value="database">DataBase</option>
                </select>
+
     <input type="SUBMIT" value="Search">
     <input type="HIDDEN" name="submit" value="true">
 </form>

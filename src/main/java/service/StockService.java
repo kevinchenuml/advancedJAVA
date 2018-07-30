@@ -38,5 +38,24 @@ public interface StockService {
      */
     List<StockQuote> getQuote(String symbol, Calendar from, Calendar until) throws StockServiceException;
 
+    /**
+     * Get a list of all people
+     *
+     * @return a list of Person instances
+     * @throws StockServiceException if a service can not read or write the requested data
+     *                                    or otherwise perform the requested operation.
+     */
+    List<StockQuote> getStockQuote() throws StockServiceException;
+
+    /**
+     * Add a new person or update an existing Person's data
+     *
+     * @param stockQuote a person object to either update or create
+     * @throws StockServiceException if a service can not read or write the requested data
+     *                                    or otherwise perform the requested operation.
+     */
+    void addOrUpdateStockQuote(StockQuote stockQuote) throws StockServiceException;
+
+
 }
 

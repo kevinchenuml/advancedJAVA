@@ -2,21 +2,19 @@ package service;
 
 import com.origami.teach.model.StockQuote;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
 
 /**
  * A factory that returns a <CODE>StockService</CODE> instance.
  */
 public class StockServiceFactory {
-
-    /**
-     * Prevent instantiations
-     */
-    private StockServiceFactory() {}
 
     /**
      *
@@ -26,7 +24,11 @@ public class StockServiceFactory {
         return new DatabaseStockService() {
             @Override
             public StockQuote getQuote(String symbol) throws StockServiceException {
-                return new StockQuote(new BigDecimal(100), Calendar.getInstance().getTime(), symbol);
+                StockQuote stockQuote = new StockQuote();
+                stockQuote.setSymbol(symbol);
+                stockQuote.setPrice("100.00");
+                stockQuote.setTime(Calendar.getInstance().getTime());
+                return stockQuote;
             }
 
             @Override
@@ -34,12 +36,34 @@ public class StockServiceFactory {
                 List<StockQuote> stockQuotes = new ArrayList<>();
                 Date aDay = from.getTime();
                 while (until.after(aDay))  {
-                    stockQuotes.add(new StockQuote(new BigDecimal(100),aDay,symbol));
+                    StockQuote stockQuote = new StockQuote();
+                    stockQuote.setSymbol(symbol);
+                    stockQuote.setPrice("100.00");
+                    stockQuote.setTime(aDay);
+                    stockQuotes.add(stockQuote);
                     from.add(Calendar.DAY_OF_YEAR, 1);
                     aDay = from.getTime();
                 }
                 return stockQuotes;            }
         };
+    }
+
+    /**
+     * Get a stock from web API
+     *
+     * @return a stock
+     */
+    public static Stock getStockQuoteFromApi(String Symbol) throws StockServiceException {
+
+        Stock stock = null;
+
+        try {
+            stock = YahooFinance.get(Symbol);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return stock;
     }
 
 }
